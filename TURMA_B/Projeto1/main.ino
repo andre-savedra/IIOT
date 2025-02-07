@@ -1,3 +1,5 @@
+//https://www.tinkercad.com/things/aojy9Up9uzz-ads-b-1
+
 // I/O's  Inputs (Entradas)
 // Outputs (Saídas)
 
