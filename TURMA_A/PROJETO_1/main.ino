@@ -13,15 +13,15 @@ void setup(){
 
 //lógica:
 void loop(){
-    /*if(!button){
+    /*if(button){
         led = 1;
     }
     else{
         led = 0;
     }*/
-    led = !button;
+    led = button;
 
     //I-O's:
-    button = digitalRead(BUTTON_PIN);
+    button = !digitalRead(BUTTON_PIN);
     digitalWrite(LED_PIN,led);
 }

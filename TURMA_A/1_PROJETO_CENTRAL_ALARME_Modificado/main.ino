@@ -39,48 +39,17 @@ hallSensor = !digitalRead(HALL_SENSOR_PIN);
 
 digitalWrite(ALARM_PIN, alarm);
 
-if(onButton){
-      // OPÇÃO 1:
+if(onButton){      
        if(barSensor == false || windowSensor1 == false || 
        windowSensor2 == false || roomSensor == true || 
        kitchenSensor == true || garageSensor == true ||
        hallSensor == true)
        {
         alarm = true;
-       }
-       else{
-        alarm = false;
-       } 
-
-       /* OPÇÃO 2:
-        if(barSensor && windowSensor1 && 
-        windowSensor2 && !roomSensor &&
-        !kitchenSensor && !garageSensor &&
-        !hallSensor)
-        {
-         alarm = false;
-        }
-        else{
-         alarm = true;
-        } */
-
-       /* OPÇÃO 3:
-            alarm = (barSensor && windowSensor1 && 
-            windowSensor2 && !roomSensor &&
-            !kitchenSensor && !garageSensor &&
-            !hallSensor) ? 0 : 1; */
-
-       /* OPÇÃO 4: 
-        alarm = !(barSensor && windowSensor1 && 
-                windowSensor2 && !roomSensor &&
-                !kitchenSensor && !garageSensor &&
-                !hallSensor); */
+       }          
 }
 else{
     alarm = false;
 }
-
-
-
 
 }
