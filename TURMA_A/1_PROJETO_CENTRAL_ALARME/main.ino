@@ -1,3 +1,4 @@
+//https://www.tinkercad.com/things/aROEKaomcEH-central-ads-turma-a
 #define ON_BUTTON_PIN 9
 #define BAR_SENSOR_PIN 1
 #define WINDOW_SENSOR1_PIN 2
