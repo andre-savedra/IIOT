@@ -11,6 +11,7 @@
 bool onButton = 0, barSensor = 0, window1Sensor = 0;
 bool window2Sensor = 0, roomSensor = 0, kitchenSensor = 0;
 bool garageSensor = 0, hallSensor = 0, alarm = 0;
+bool systemOn = 0, onButtonBuffer = 0;
 
 void setup()
 {
@@ -23,6 +24,8 @@ void setup()
     pinMode(GARAGE_SENSOR_PIN, INPUT_PULLUP);
     pinMode(HALL_SENSOR_PIN, INPUT_PULLUP);
     pinMode(ALARM_PIN, OUTPUT);  
+
+    Serial.begin(9600);
 }
 
 void loop()
@@ -38,7 +41,18 @@ void loop()
     hallSensor = !digitalRead(HALL_SENSOR_PIN);    
     digitalWrite(ALARM_PIN, alarm);
 
+    //INÍCIO DA BORDA:
     if(onButton){
+       onButtonBuffer = true;
+    }
+    //FIM DA BORDA:
+    if(onButtonBuffer && !onButton){
+        systemOn = !systemOn;
+        Serial.println("Sistema ativado: " + String(systemOn));
+        onButtonBuffer = false;
+    }
+
+    if(systemOn){
         if( !barSensor || !window1Sensor || !window2Sensor || 
             roomSensor || kitchenSensor || hallSensor || garageSensor ){
 
