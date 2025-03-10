@@ -4,7 +4,7 @@ import { ref, reactive } from 'vue';
 
 const ar: Device = reactive(new Device());
 ar.name = 'Ar condicionado Samsung';
-ar.state = true;
+ar.state = false;
 ar.icon = 'mode_cool';
 
 const tv: Device = reactive(new Device());
@@ -22,17 +22,32 @@ iluminacao.icon = 'light';
 <template>
     <h1>Seus Dispositivos: </h1>
     
-    <div>
+    <div>        
         <h5>{{ ar.name }}</h5>
         <span class="icons material-icons-round">{{ ar.icon }}</span>
-        <div>
-            <button>ON</button>
-            <button>OFF</button>
-        </div>
+        <div :class="`button-${ar.state}`">
+            <button class="on">ON</button>
+            <button class="off">OFF</button>
+        </div>      
     </div>
     
 </template>
 
 <style scoped lang="scss">
-
+    .button-true{
+        .on{
+            background-color: green;
+        }
+        .off{
+            background-color: white;
+        }
+    }
+    .button-false{
+        .on{
+            background-color: white;
+        }
+        .off{
+            background-color: red;
+        }
+    }
 </style>
