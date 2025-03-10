@@ -1,17 +1,36 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { Device } from '@/models/devices';
+import { ref, reactive } from 'vue';
 
-const counter = ref(0);
-const contar = ()=> {
-    counter.value += 1;
-    console.log(counter);
-}
+const ar: Device = reactive(new Device());
+ar.name = 'Ar condicionado Samsung';
+ar.state = true;
+ar.icon = 'mode_cool';
+
+const tv: Device = reactive(new Device());
+tv.name = 'Smart TV LG';
+tv.icon = 'tv';
+
+const iluminacao: Device = reactive(new Device());
+iluminacao.name = 'Lâmpada Led';
+iluminacao.state = true;
+iluminacao.icon = 'light';
+
+
 </script>
 
 <template>
-    <h1>Hello Devices!</h1>
-    <h1>Contagem: {{ counter }}</h1>
-    <button @click="contar">Somar</button>
+    <h1>Seus Dispositivos: </h1>
+    
+    <div>
+        <h5>{{ ar.name }}</h5>
+        <span class="icons material-icons-round">{{ ar.icon }}</span>
+        <div>
+            <button>ON</button>
+            <button>OFF</button>
+        </div>
+    </div>
+    
 </template>
 
 <style scoped lang="scss">
