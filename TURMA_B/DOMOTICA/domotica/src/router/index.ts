@@ -8,11 +8,13 @@ const router = createRouter({
   routes: [    
     {
       component: Devices,
-      path: '/'
+      path: '/',
+      name: 'devices'
     },
     {
       component: Management,
-      path: '/management'
+      path: '/management',
+      name: 'management'
     },
     {
       component: NotFound,
