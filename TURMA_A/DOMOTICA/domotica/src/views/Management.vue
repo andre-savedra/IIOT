@@ -5,13 +5,14 @@ import { Device, Environment, mapApiResponseToEnvironments } from '@/models/devi
 import { ref, reactive, onMounted } from 'vue';
 import { useDeviceRepository } from '@/stores/deviceRepository';
 import { getEnvironments } from '@/services/cdnService';
+import { saveEnvironment } from '@/services/apiService';
 
 const selectedEnvironment = ref(new Environment());
 const newEnv = reactive(new Environment());
 const showNewEnvForm = ref(false);
 
-const saveNewEnv = ()=> {
-    useDeviceRepository().addEnvironment(newEnv);
+const saveNewEnv = async ()=> {
+    await saveEnvironment(newEnv.name);
     showNewEnvForm.value = false;
 }
 

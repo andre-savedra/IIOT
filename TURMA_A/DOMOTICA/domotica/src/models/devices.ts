@@ -39,7 +39,7 @@ export class IncludesResponse<T> {
 export class ApiResponse<T,Y> {
     items: Array<ResponseItem<T>> = [];  
     sys: ResponseSys = new ResponseSys();
-    includes: IncludesResponse<Y> = new IncludesResponse();  
+    includes: IncludesResponse<Y> = new IncludesResponse();      
 }
 
 
@@ -64,4 +64,23 @@ export const mapApiResponseToEnvironments =
         }
         return null;
     }).filter(environment=>environment!==null);
+}
+
+
+export class ApiAttribute<T>{
+    pt: T|null = null;
+    constructor(initialValue: T){
+        this.pt = initialValue;
+    }
+}
+
+export class NewEnvironment {
+    name: ApiAttribute<string> = new ApiAttribute("");
+}
+
+export class NewField<T>{
+    fields: T|null = null;    
+    constructor(initialValue: T){
+        this.fields = initialValue;
+    }
 }
