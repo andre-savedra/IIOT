@@ -4,7 +4,7 @@
    import AddNewDeviceComponent from './AddNewDeviceComponent.vue';
    import { reactive, ref } from 'vue';
    import { useDeviceRepository } from '@/stores/deviceRepository';
-import { getEnvironments } from '@/services/cdnService';
+   import { getEnvironments } from '@/services/cdnService';
     
     const props = defineProps({
         environment: { type: Environment, required: true },
@@ -35,7 +35,7 @@ import { getEnvironments } from '@/services/cdnService';
                 <DeviceComponent :showButtons="showDeviceButtons" :device="currentDevice" 
                     :index="id" @deviceDeleteEvent="removeDevice"/>
             </div>
-            <p v-if="!props.environment.devices" class="w-full ml-3">
+            <p v-if="!props.environment.devices" class="m-3">
                 Sem Dispositivos!!! 
             </p>
             <AddNewDeviceComponent v-if="!props.showDeviceButtons" @newDeviceEvent="showNewDeviceForm = !showNewDeviceForm" />                 

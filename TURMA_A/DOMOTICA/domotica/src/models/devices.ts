@@ -21,6 +21,7 @@ export class EnvironmentResponse {
 
 export class ResponseSys {
     id: string = '';
+    version: number = 1;
 }
 
 export class ResponseItem<T> {
@@ -83,4 +84,8 @@ export class NewField<T>{
     constructor(initialValue: T){
         this.fields = initialValue;
     }
+}
+
+export class CreatedItem {    
+    sys: ResponseSys = new ResponseSys();    
 }

@@ -1,7 +1,7 @@
-import { ApiResponse, Device, Environment, EnvironmentResponse, NewEnvironment, NewField } from "@/models/devices";
+import { CreatedItem, NewEnvironment, NewField } from "@/models/devices";
 import { getApiAxios } from "./services.config";
 
-export const saveEnvironment = (name:string): Promise<void> => {
+export const saveEnvironment = (name:string): Promise<CreatedItem> => {
 
     const env = new NewEnvironment();
     env.name.pt = name;
@@ -12,4 +12,13 @@ export const saveEnvironment = (name:string): Promise<void> => {
             "X-Contentful-Content-Type": "environment"
         }
     });   
+}
+
+export const publish = (id:string, version:number = 1): Promise<void> => {
+
+        return getApiAxios().put(`/${id}/published`,undefined,{
+            headers: {
+                "X-Contentful-Version": version
+            }
+        });   
 }

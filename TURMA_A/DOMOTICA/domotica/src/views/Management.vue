@@ -2,41 +2,58 @@
 import DeviceComponent from '@/components/DeviceComponent.vue';
 import EnvironmentComponent from '@/components/EnvironmentComponent.vue';
 import { Device, Environment, mapApiResponseToEnvironments } from '@/models/devices';
-import { ref, reactive, onMounted } from 'vue';
+import { ref, reactive, onMounted, onBeforeMount, type Ref } from 'vue';
 import { useDeviceRepository } from '@/stores/deviceRepository';
 import { getEnvironments } from '@/services/cdnService';
-import { saveEnvironment } from '@/services/apiService';
+import { publish, saveEnvironment } from '@/services/apiService';
 
 const selectedEnvironment = ref(new Environment());
 const newEnv = reactive(new Environment());
 const showNewEnvForm = ref(false);
 
 const saveNewEnv = async ()=> {
-    await saveEnvironment(newEnv.name);
-    showNewEnvForm.value = false;
+    try{
+        const savedEnv = await saveEnvironment(newEnv.name);
+        showNewEnvForm.value = false;
+        if(savedEnv?.sys){
+            await publish(savedEnv.sys.id, savedEnv.sys.version);
+            newEnv.devices = [];
+            newEnv.id = '';
+            newEnv.name = '';
+            await getAllEnvironments();
+        }   
+
+    } catch(error){
+        console.error("Error when saving new envi", error);
+    }
+
 }
 
-onMounted(() => {
-    selectedEnvironment.value =  useDeviceRepository().environments[0] ?? new Environment();
+
+const allEnvironments: Ref<Array<Environment>> = ref([]);
+
+const getAllEnvironments = async() =>{
+
+    try{
+        const response = await getEnvironments();
+        allEnvironments.value.length = 0;
+        mapApiResponseToEnvironments(response).forEach(item=> 
+            allEnvironments.value.push(item)
+        );          
+    } catch(error){
+        console.error("Error when getting environments", error);
+    }
+}
+
+onBeforeMount(()=>{
+    getAllEnvironments();
 })
 
-
-const allEnvironments: Array<Environment> = reactive([]);
-
-getEnvironments()
-    .then(response =>{
-        mapApiResponseToEnvironments(response).forEach(item=> 
-            allEnvironments.push(item)
-        );         
-    })
-    .catch(error =>{
-        console.error("Error when getting environments", error);
-    });
 </script>
 
 <template>
     <main class="flex flex-column text-center justify-content-center align-items-center">
-        <h1>Gerencie seus Dispositivos! ⚡</h1>
+        <h1>Gerencie seus Dispositivos! ⚡</h1>        
         <section class="environments flex flex-column border-round-sm">
             <div class="flex flex-row m-3">
                 <label for="selectedEnv" class="mr-3">Ambiente:</label>
@@ -62,7 +79,8 @@ getEnvironments()
             </div>
             <div>
                 <EnvironmentComponent :showDeviceButtons="false" :environment="selectedEnvironment" />
-            </div>            
+            </div>      
+            {{ allEnvironments }}      
         </section>
     </main>
 </template>
