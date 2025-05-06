@@ -30,7 +30,3 @@ coverage
 *.tsbuildinfo
 
 .env
-
-firmware/*
-
-arduino.ino
