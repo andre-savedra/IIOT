@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import DeviceComponent from '@/components/DeviceComponent.vue';
 import EnvironmentComponent from '@/components/EnvironmentComponent.vue';
-import { Device, Environment, mapApiResponseToEnvironments } from '@/models/devices';
+import { ApiResponse, Device, Environment, EnvironmentResponse, mapApiResponseToEnvironments } from '@/models/devices';
 import { ref, reactive, onMounted, onBeforeMount, type Ref } from 'vue';
 import { useDeviceRepository } from '@/stores/deviceRepository';
 import { getEnvironments } from '@/services/cdnService';
@@ -31,15 +31,33 @@ const saveNewEnv = async ()=> {
 
 
 const allEnvironments: Ref<Array<Environment>> = ref([]);
+const teste = ref<Number>(0);
+
+    
 
 const getAllEnvironments = async() =>{
 
     try{
+        console.log("start request");
         const response = await getEnvironments();
         allEnvironments.value.length = 0;
+        // teste.value = (await getEnvironments()).items.length;
+        getEnvironments().then(r=>teste.value = r.items.length);
+        // teste.length = 0;
+
+        // response.items.forEach(i=>teste.push(JSON.parse(JSON.stringify(i.fields?.name)) ?? "-"));
+        
+        // teste.includes = response.includes;
+        // teste.items = response.items;
+        // teste.sys = response.sys;
         mapApiResponseToEnvironments(response).forEach(item=> 
-            allEnvironments.value.push(item)
+            {
+                allEnvironments.value.push(item);
+                // teste.push(item.name);
+                // teste.push(JSON.parse(JSON.stringify(item)));
+            }
         );          
+        // setTimeout(()=>{teste.length=0},2000);
     } catch(error){
         console.error("Error when getting environments", error);
     }
@@ -80,7 +98,10 @@ onBeforeMount(()=>{
             <div>
                 <EnvironmentComponent :showDeviceButtons="false" :environment="selectedEnvironment" />
             </div>      
-            {{ allEnvironments }}      
+            <!-- {{ teste.map(i=>`<> ${i.name} <>`) }}       -->
+              <!-- {{ teste.items.map(i=>`<> ${i.sys.id} <>`) }} -->
+                {{ teste }}
+            
         </section>
     </main>
 </template>
