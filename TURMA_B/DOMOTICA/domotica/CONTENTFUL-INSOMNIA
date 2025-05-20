@@ -1,0 +1,227 @@
+type: collection.insomnia.rest/5.0
+name: Scratch Pad
+meta:
+  id: wrk_scratchpad
+  created: 1742519074325
+  modified: 1742519074325
+collection:
+  - name: SWAPI
+    meta:
+      id: fld_7d3eca053838447ab9149c7ab8eb7e27
+      created: 1742519089268
+      modified: 1742519089268
+      sortKey: -1742519089268
+  - name: CMS
+    meta:
+      id: fld_818c242bcc954fe8963a7abb11dfcc36
+      created: 1743723949410
+      modified: 1743723949410
+      sortKey: -1743723949410
+    children:
+      - url: https://api.contentful.com/spaces/9emcot1k760p/environments/master/entries
+        name: POST DEVICE
+        meta:
+          id: req_6c34fe159fe245958f3f2c21cfb3aeec
+          created: 1743719752642
+          modified: 1747699394617
+          isPrivate: false
+          sortKey: -1743121521966.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "fields": {
+                "name": {
+                  "en-US": "Tomada Inteligente"
+                },
+                "icon": {
+                  "en-US": "plug"
+                },
+            		"pin": {
+                  "en-US": 2
+                }
+              }.
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_d7839500ac84452fa5ccaa612a6c8046
+          - name: User-Agent
+            value: insomnia/11.0.0
+            id: pair_90be90cbe02440b48eae4f774fbce282
+          - id: pair_53397538a33641429fab05bb2c948499
+            name: Authorization
+            value: Bearer SEU TOKEN
+            disabled: false
+          - id: pair_4230c59125954b7b9df6de62d9b4a696
+            name: X-Contentful-Content-Type
+            value: device
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://cdn.contentful.com/spaces/9emcot1k760p/environments/master/entries
+        name: GET DEVICES
+        meta:
+          id: req_ac9b15cfa7b342b2afae9ed44267aa91
+          created: 1743723952332
+          modified: 1747699374012
+          isPrivate: false
+          sortKey: -1743723952332
+        method: GET
+        parameters:
+          - id: pair_09d041682c684524bc795f061c71d467
+            name: content_type
+            value: device
+            disabled: false
+          - id: pair_64311efad04d41dbb383d82d83b7bcc2
+            name: select
+            value: fields.pin,fields.state
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+            id: pair_f1e2e3acdba34ddf8e2a4cf23d9823cf
+          - id: pair_3f5c5c0b3ccb406fa31fbf5997f5479f
+            name: Authorization
+            value: Bearer SEU TOKEN
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://cdn.contentful.com/spaces/9emcot1k760p/environments/master/entries
+        name: GET ENVIRONMENTS
+        meta:
+          id: req_50bdb1de06984394adf509a060ee066d
+          created: 1743724428607
+          modified: 1747699390072
+          isPrivate: false
+          sortKey: -1743121522066.5
+        method: GET
+        parameters:
+          - id: pair_09d041682c684524bc795f061c71d467
+            name: content_type
+            value: environment
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+            id: pair_f1e2e3acdba34ddf8e2a4cf23d9823cf
+          - id: pair_3f5c5c0b3ccb406fa31fbf5997f5479f
+            name: Authorization
+            value: Bearer SEU TOKEN
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://api.contentful.com/spaces/9emcot1k760p/environments/master/entries/4gmlGzXHb3cWfoaO73xlxR/published
+        name: PUT PUBLISH
+        meta:
+          id: req_0a891ae2271e4a5eba8cadb5d2dab7c5
+          created: 1743728544773
+          modified: 1747699404100
+          isPrivate: false
+          sortKey: -1742820306883.75
+        method: PUT
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.0
+            id: pair_90be90cbe02440b48eae4f774fbce282
+          - id: pair_53397538a33641429fab05bb2c948499
+            name: Authorization
+            value: Bearer SEU TOKEN
+            disabled: false
+          - id: pair_4230c59125954b7b9df6de62d9b4a696
+            name: X-Contentful-Version
+            value: "1"
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: https://api.contentful.com/spaces/9emcot1k760p/environments/master/entries
+        name: POST ENVIRONMENT
+        meta:
+          id: req_52ce8dc4fe4e4f4684629925dd458de3
+          created: 1745541945434
+          modified: 1747699398669
+          isPrivate: false
+          sortKey: -1742970914425.125
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            		"fields": {
+                "name": {
+                  "pt": "teste"
+                }    
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_d7839500ac84452fa5ccaa612a6c8046
+          - name: User-Agent
+            value: insomnia/11.0.0
+            id: pair_90be90cbe02440b48eae4f774fbce282
+          - id: pair_53397538a33641429fab05bb2c948499
+            name: Authorization
+            value: Bearer SEU TOKEN
+            disabled: false
+          - id: pair_4230c59125954b7b9df6de62d9b4a696
+            name: X-Contentful-Content-Type
+            value: environment
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1742519080261
+    modified: 1743719586445
+  cookies:
+    - key: _auth_new_session
+      value: 828dfd15d9b288aa80f7dcec45a37f41
+      domain: api.contentful.com
+      path: /
+      secure: true
+      httpOnly: true
+      hostOnly: true
+      creation: 2025-04-03T22:32:46.153Z
+      lastAccessed: 2025-04-03T22:33:06.444Z
+      id: 10427cbf-e347-4f7a-978c-1e995b35aa93
+environments:
+  name: Base Environment
+  meta:
+    id: env_99d30891da4bdcebc63947a8fc17f076de878684
+    created: 1742519080180
+    modified: 1742519080180
+    isPrivate: false
